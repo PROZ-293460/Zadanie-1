@@ -1,36 +1,54 @@
 package calculator.model;
 
 import java.util.List;
-
-import jdk.jshell.*;
-import jdk.jshell.Snippet.Status;
 import jdk.jshell.JShell;
-import jdk.jshell.Snippet;
 import jdk.jshell.SnippetEvent;
 
 public class Model 
-{
-	public String calculate(String str)
+{	
+
+	
+	public String calculate(String str) throws IllegalArgumentException
 	{
 		String outcome=str;
+		
+		//Setting precision of output string
+		/*
+		String temp = "Math.round(100000*(" + str;
+		temp+="))/100000.0";
+		str=null;
+		*/
+		String temp=str;
 		
 		
 			JShell jshell = JShell.create();
 			
-			List<SnippetEvent> events = jshell.eval(str);
+			try(jshell)
+			{
+			List<SnippetEvent> events = jshell.eval(temp);
 			
 			for (SnippetEvent e : events) 
 			{
 				if (e.causeSnippet() == null) 
 				{
-					if (e.value() != null) 
+					switch (e.status())
 					{
-						outcome = e.value();
-					}
+					case VALID:
+						if (e.value() != null) 
+						{
+							outcome = e.value();
+						}
 					break;
+					
+					default: 
+						throw new IllegalArgumentException();
+					}
 				}
 
 			}
+			
+			}
+			
 		
 		
 		return outcome;

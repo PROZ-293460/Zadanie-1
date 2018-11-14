@@ -4,9 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 
 public class Controller 
 {
@@ -94,24 +92,18 @@ public class Controller
   	//Number of left brackets in the string
   	private int braNum=0;
   	
-  	//Changing font flag
-  	private boolean fontFlag=false;
-  	
+  	//Flag activate during typing number with decimal fraction
   	private boolean dotFlag=false;
   	
-  	//Flag activated after first number typing
+  	//Flag activate after first number typing
   	private boolean numberFlag=false;
   	
-  	//rzucac wyjatki po samych nawiasow
+  	//Alert use for presenting alerts during errors
+  	private calculator.model.MyError error1 = new calculator.model.MyError();
+  	
 	@FXML
 	void addToString(ActionEvent event) 
-	{
-		//Checking font size
-		if(fontFlag)
-			txtField.setFont(Font.font(40.0));
-		
-		//Completing text on the screen
-		
+	{	
 		
 		//Completing result String
 		//sqrt
@@ -161,22 +153,14 @@ public class Controller
 		//Dot
 		else if(((Button)event.getSource()).getId().equals("btnDot"))
 		{
-			//System.out.println(result.length());
 			if(result.length()<=2 || !(result.substring(result.length()-2,result.length()).equals(".0")))
 				{
-				//Alert kropka w nieprawidlowym miejscu
-				txt="Nieprawidlowe wprowadzenie danych";
-				txtField.setFont(Font.font(20.0));
-				txtField.setText(txt);
-				fontFlag=true;
-				result="";
-				txt="";
+				error1.setup("Incorrect location of the dot");
+				clear();
 				}
 			else
 			{
-				//ustawienie kropki i flagi kropki
 				String temp = result.substring(0,result.length()-1);
-				//System.out.println(temp);
 				result=new String();
 				result+=temp;
 				txt+=((Button)event.getSource()).getText();
@@ -192,7 +176,7 @@ public class Controller
 			result+=((Button)event.getSource()).getText();
 		}
 			
-		
+		//Completing text on the screen
 		txtField.setText(txt);
 		System.out.println(result);
 	}
@@ -220,13 +204,14 @@ public class Controller
 		
 		numberFlag=true;
 		
+		//Setting text on the screen
 		txtField.setText(txt);
 		System.out.println(result);
 	}
 	
 	
 	@FXML
-	void clear(ActionEvent event) 
+	void clear()
 	{
 		txt="";
 		result="";
@@ -248,19 +233,24 @@ public class Controller
 			}
 		else if(braNum<0)
 		{
-			txt= "Too much right brackets in the sentence";
-			txtField.setFont(Font.font(20.0));
-			txtField.setText(txt);
-			fontFlag=true;
-			result="";
-			txt="";
+			error1.setup("Too much right brackets in the sentence");
+			clear();
 			return;
 		}
+		//Sending string to model
+		try
+		{
 		txt=model.calculate(result);
+		}
+		catch(IllegalArgumentException e)
+		{
+			error1.setup("Incorrectly input data");
+			clear();
+		}
 		txtField.setText(txt);
 		result=txt;
 		braNum=0;
-		//Rozkiminc flage kropki
-		//dotFlag=false;
+		dotFlag=true;
+		numberFlag=true;
 	}
 }
