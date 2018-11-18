@@ -1,6 +1,6 @@
 /**
 * Model Class
-* @autor Krzysztof Kobyliñski
+* @autor Krzysztof Kobylinski
 * @version 1.0
 */
 package calculator.model;

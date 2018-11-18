@@ -1,7 +1,7 @@
 /**
 * MyError CLass
 * Class which is used to set and show errors during operation of the program
-* @autor Krzysztof Kobyliñski
+* @autor Krzysztof Kobylinski
 * @version 1.0
 */
 package calculator.model;

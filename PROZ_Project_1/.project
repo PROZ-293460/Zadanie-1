@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/module-info.java</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/java_git/Zadanie-1/PROZ_Project_1/src/module-info.java</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

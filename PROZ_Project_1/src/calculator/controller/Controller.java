@@ -1,6 +1,6 @@
 /**
 * Controller CLass
-* @autor Krzysztof Kobyliñski
+* @autor Krzysztof Kobylinski
 * @version 1.0
 */
 
@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 
 public class Controller 
 {
@@ -80,9 +79,6 @@ public class Controller
 
     @FXML
     private Button leftBracket;
-    
-    @FXML
-    private GridPane gridPane;
     
 	@FXML
     private TextField txtField;
@@ -172,8 +168,8 @@ public class Controller
 		else if(((Button)event.getSource()).getId().equals("leftBracket"))
 		{
 			braNum++;
-			result+=((Button)event.getSource()).getAccessibleText();
-			txt+=((Button)event.getSource()).getAccessibleText();
+			result+=((Button)event.getSource()).getText();
+			txt+=((Button)event.getSource()).getText();
 			dotFlag=false;
 			numberFlag=false;
 		}
@@ -181,8 +177,8 @@ public class Controller
 		else if(((Button)event.getSource()).getId().equals("rightBracket"))
 		{
 			braNum--;
-			result+=((Button)event.getSource()).getAccessibleText();
-			txt+=((Button)event.getSource()).getAccessibleText();
+			result+=((Button)event.getSource()).getText();
+			txt+=((Button)event.getSource()).getText();
 			dotFlag=false;
 			numberFlag=false;
 		}
@@ -297,6 +293,7 @@ public class Controller
 		{
 			error1.setup("Incorrect input data");
 			clear();
+			return;
 		}
 		txtField.setText(txt);
 		result=txt;
