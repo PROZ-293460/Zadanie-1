@@ -1,10 +1,8 @@
 /**
- * 
- */
-/**
- * @author Krzysiek
- *
- */
+* Module-info
+* @autor Krzysztof Kobyliñski
+* @version 1.0
+*/
 module PROZ_Project_1 {
 	requires transitive javafx.controls;
 	requires jdk.jshell;

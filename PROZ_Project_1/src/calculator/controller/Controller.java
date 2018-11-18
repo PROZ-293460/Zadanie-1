@@ -1,3 +1,9 @@
+/**
+* Controller CLass
+* @autor Krzysztof Kobyliñski
+* @version 1.0
+*/
+
 package calculator.controller;
 
 import javafx.event.ActionEvent;
@@ -81,7 +87,7 @@ public class Controller
 	@FXML
     private TextField txtField;
 	
-	//text provided to jshell
+	//String which is provided to Model class after click equals button
     @FXML
 	private String result="";
 	
@@ -92,18 +98,48 @@ public class Controller
   	//Number of left brackets in the string
   	private int braNum=0;
   	
-  	//Flag activate during typing number with decimal fraction
+  	//Flag active during typing number with decimal fraction
   	private boolean dotFlag=false;
   	
-  	//Flag activate after first number typing
+  	//Flag activate after type first number
   	private boolean numberFlag=false;
+  	
+  	//Flag activate after presenting result on the screen
+  	private boolean ansFlag=false;
   	
   	//Alert use for presenting alerts during errors
   	private calculator.model.MyError error1 = new calculator.model.MyError();
   	
+	private calculator.model.Model model = new calculator.model.Model();
+	
+	/**
+	* No-arguments Constructor
+	* Setting private variables to default values
+	*/
+	public Controller()
+	{
+		result="";
+		txt="";
+		braNum=0;
+		dotFlag=false;
+		numberFlag=false;
+		ansFlag=false;
+	}
+  	
+	/**
+	* addToString method
+	* Method which interacts with most buttons and complete txt and result strings
+	*/
+
 	@FXML
 	void addToString(ActionEvent event) 
 	{	
+		
+		if(ansFlag)
+		{
+			txt="Ans";
+			ansFlag=false;
+		}
 		
 		//Completing result String
 		//sqrt
@@ -178,13 +214,20 @@ public class Controller
 			
 		//Completing text on the screen
 		txtField.setText(txt);
-		System.out.println(result);
+		//System.out.println(result);
 	}
 
+	/**
+	* addNumber method
+	* Method which interacts with number buttons and complete txt and result strings
+	*/
 	@FXML
 	//event on action when number
 	void addNumber(ActionEvent event) 
 	{
+		if(ansFlag)
+			clear();
+		
 		txt+=((Button)event.getSource()).getText();
 		
 		if(dotFlag)
@@ -206,10 +249,13 @@ public class Controller
 		
 		//Setting text on the screen
 		txtField.setText(txt);
-		System.out.println(result);
+		//System.out.println(result);
 	}
 	
-	
+	/**
+	* clear method
+	* Method which clears all strings, flags and set number of brackets to 0
+	*/
 	@FXML
 	void clear()
 	{
@@ -219,10 +265,15 @@ public class Controller
 		braNum=0;
 		dotFlag=false;
 		numberFlag=false;
+		ansFlag=false;
 	}
-
-	private calculator.model.Model model = new calculator.model.Model();
 	
+	/**
+	* equals method
+	* Method which interacts with equals button
+	* Checks number of brackets and completes missing brackets or shows an error
+	* Sends the string to model class and receives an result
+	*/
 	@FXML
 	void equals(ActionEvent event) 
 	{
@@ -244,7 +295,7 @@ public class Controller
 		}
 		catch(IllegalArgumentException e)
 		{
-			error1.setup("Incorrectly input data");
+			error1.setup("Incorrect input data");
 			clear();
 		}
 		txtField.setText(txt);
@@ -252,5 +303,6 @@ public class Controller
 		braNum=0;
 		dotFlag=true;
 		numberFlag=true;
+		ansFlag=true;
 	}
 }

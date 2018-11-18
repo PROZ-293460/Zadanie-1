@@ -1,3 +1,8 @@
+/**
+* Main Class
+* @autor Krzysztof Kobyliñski
+* @version 1.0
+*/
 package calculator.main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +19,6 @@ public class Main extends Application
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/calculator/view/Main.fxml"));		
 			Scene scene = new Scene(root, 430, 500);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) 

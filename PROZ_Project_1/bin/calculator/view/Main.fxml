@@ -133,17 +133,17 @@
                   <Font size="25.0" />
                </font>
             </Button>
-            <Button layoutX="100.0" layoutY="11.0" mnemonicParsing="false" onAction="#addToString" prefHeight="63.0" prefWidth="114.0" GridPane.rowIndex="4">
+            <Button layoutX="100.0" layoutY="11.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="114.0" GridPane.rowIndex="4">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-            <Button layoutX="100.0" layoutY="11.0" mnemonicParsing="false" onAction="#addToString" prefHeight="63.0" prefWidth="114.0" GridPane.rowIndex="3">
+            <Button layoutX="100.0" layoutY="11.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="114.0" GridPane.rowIndex="3">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-            <Button layoutX="100.0" layoutY="11.0" mnemonicParsing="false" onAction="#addToString" prefHeight="63.0" prefWidth="114.0" GridPane.rowIndex="2">
+            <Button layoutX="100.0" layoutY="11.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="114.0" GridPane.rowIndex="2">
                <font>
                   <Font size="25.0" />
                </font>
