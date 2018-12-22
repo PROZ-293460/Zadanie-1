@@ -20,6 +20,8 @@ public class Main extends Application
 			Parent root = FXMLLoader.load(getClass().getResource("/calculator/view/Main2.fxml"));		
 			Scene scene = new Scene(root, 450, 503);
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
+			primaryStage.sizeToScene();
 			primaryStage.show();
 		} catch (Exception e) 
 		{
